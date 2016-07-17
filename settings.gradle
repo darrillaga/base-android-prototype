@@ -1,1 +1,1 @@
-include ':viewer', ':creator'
+include ':viewer', ':commons'

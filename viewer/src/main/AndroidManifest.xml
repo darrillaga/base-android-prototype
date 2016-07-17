@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="me.darrillaga.torconudo"
+<manifest package="me.darrillaga.prototype.viewer"
           xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -9,15 +11,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="me.darrillaga.torgonudo.viewer.view.PendingDeliveryOrdersActivity"
+            android:name="me.darrillaga.prototype.viewer.viewpendingorders.view.PendingDeliveryOrdersActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_pending_deliveries"
+            android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_api_key"/>
+
+        <activity
+            android:name="me.darrillaga.prototype.viewer.MapsActivity"
+            android:label="@string/title_activity_maps">
         </activity>
     </application>
 

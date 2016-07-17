@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Torconudo viewer</string>
-
-    <string name="title_activity_pending_deliveries">PendingDeliveriesActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-</resources>

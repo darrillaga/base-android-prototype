@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base"/>
+
+    <style name="Base.ContainerWithoutPadding">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.ContainerWithoutPadding.WithActionBarOverlay">
+        <item name="android:paddingTop">?android:attr/actionBarSize</item>
+    </style>
+
+    <style name="Base.ContainerTopBottomPadded" parent="Base.ContainerWithoutPadding">
+        <item name="android:paddingTop">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.ContainerLeftRightPadded" parent="Base.ContainerWithoutPadding">
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.Container" parent="Base.ContainerTopBottomPadded">
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.Container.SmallTopBottomPadded" parent="Base.ContainerWithoutPadding">
+        <item name="android:paddingTop">@dimen/small_spacing</item>
+        <item name="android:paddingBottom">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Container.SmallLeftRightPadded" parent="Base.ContainerWithoutPadding">
+        <item name="android:paddingRight">@dimen/small_spacing</item>
+        <item name="android:paddingLeft">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Container.SmallPadding" parent="Base.Container.SmallTopBottomPadded">
+        <item name="android:paddingRight">@dimen/small_spacing</item>
+        <item name="android:paddingLeft">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Container.WithActionBarOverlay">
+        <item name="android:paddingTop">?android:attr/actionBarSize</item>
+    </style>
+
+    <style name="Base.Wrapper">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.Button">
+        <item name="android:layout_width">@dimen/xxlarge_size</item>
+        <item name="android:layout_height">@dimen/xxlarge_size</item>
+    </style>
+
+    <style name="Base.Button.FullHeight">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.ProgressBar.Small" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.FullPadded" parent="Base.Wrapper.FullPadded">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.LeftRightPadded" parent="Base.Wrapper.LeftRightPadded">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.SmallTopBottomPadded" parent="Base.Wrapper.SmallTopBottomPadded">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.SmallFullPadded" parent="Base.Wrapper.FullHeight.SmallTopBottomPadded">
+        <item name="android:paddingLeft">@dimen/small_spacing</item>
+        <item name="android:paddingRight">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.TopBottomPadded">
+        <item name="android:paddingTop">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.SmallTopBottomPadded">
+        <item name="android:paddingTop">@dimen/small_spacing</item>
+        <item name="android:paddingBottom">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.LeftRightPadded">
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.SmallLeftRightPadded">
+        <item name="android:paddingLeft">@dimen/small_spacing</item>
+        <item name="android:paddingRight">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.FullPadded" parent="Base.Wrapper.TopBottomPadded">
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.SmallFullPadded" parent="Base.Wrapper.SmallTopBottomPadded">
+        <item name="android:paddingRight">@dimen/small_spacing</item>
+        <item name="android:paddingLeft">@dimen/small_spacing</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.SmallFullPadded" parent="Base.Wrapper.SmallFullPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.SmallTopBottomPadded" parent="Base.Wrapper.SmallTopBottomPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.SmallLeftRightPadded" parent="Base.Wrapper.SmallLeftRightPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.TopBottomPadded" parent="Base.Wrapper.TopBottomPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.FullPadded" parent="Base.Wrapper.FullPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullWidth.LeftRightPadded" parent="Base.Wrapper.LeftRightPadded">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Base.FullWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.SmallLeftRightPadded" parent="Base.Wrapper.SmallLeftRightPadded">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Base.Wrapper.FullHeight.TopBottomPadded" parent="Base.Wrapper.TopBottomPadded">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+</resources>
