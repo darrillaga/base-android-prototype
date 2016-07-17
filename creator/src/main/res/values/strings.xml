@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Torconudo Creator</string>
+    <string name="title_activity_create_delivery_order">CreateDeliveryOrderActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>
