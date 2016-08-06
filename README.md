@@ -4,4 +4,4 @@ It can be used to copy/paste or for branching
 
 Index:
 
-* [Pokémon Go Children Guardian](tree/prototype/pokemon_go_children_guardian)
+* [Pokémon Go Children Guardian](https://github.com/darrillaga/base-android-prototype/tree/prototype/pokemon_go_children_guardian)
