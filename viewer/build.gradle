@@ -49,7 +49,8 @@ android {
         main {
             res.srcDirs = [
                     'src/main/res-main',
-                    'src/main/res-feature/view-pending-deliveries'
+                    'src/main/res-feature/view-pending-deliveries',
+                    'src/main/res-feature/children-guardian-map'
             ]
         }
     }

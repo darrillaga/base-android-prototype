@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tap_to_create_danger_zone">Presiona en el mapa y crea una zona de peligro</string>
+    <string name="tap_to_create_secure_zone">Presiona en el mapa y crea una zona segura</string>
+</resources>

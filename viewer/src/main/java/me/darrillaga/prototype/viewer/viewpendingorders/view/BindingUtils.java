@@ -14,7 +14,7 @@ import me.darrillaga.prototype.viewer.viewpendingorders.viewmodel.DeliveryOrderV
 public class BindingUtils {
 
     @BindingAdapter("app:dataSet")
-    public static void bindDataSet(RecyclerView recyclerView, ObservableList<DeliveryOrderViewModel> deliveryOrderViewModels) {
+    public static void bindDataSet(RecyclerView recyclerView, ObservableList<DeliveryOrderViewModel> childViewModels) {
 
         if (recyclerView.getTag(R.id.adapterAdded) != null) {
             return;
@@ -28,13 +28,13 @@ public class BindingUtils {
 
         recyclerView.setAdapter(
                 DataBindingAdapterUtils.createAdapter(
-                        deliveryOrderViewModels, R.layout.view_delivery_order_list_item, BR.viewModel
+                        childViewModels, R.layout.view_delivery_order_list_item, BR.viewModel
                 )
         );
 
-        deliveryOrderViewModels.addOnListChangedCallback(
+        childViewModels.addOnListChangedCallback(
                 ObservableListAdapterObservers.createObservableListAdapterBridge(
-                        deliveryOrderViewModels, null, recyclerView.getAdapter()
+                        childViewModels, null, recyclerView.getAdapter()
                 )
         );
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="childViewModel"
+            type="me.darrillaga.prototype.viewer.childrenguardian.viewmodel.ChildViewModel"/>
+
+        <variable
+            name="eventsHandler"
+            type="me.darrillaga.prototype.viewer.childrenguardian.view.EventsHandler"/>
+
+        <import type="me.darrillaga.prototype.viewer.childrenguardian.view.ColorUtils"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@{childViewModel.selected ? @drawable/start_rounded_black_background : null}"
+        android:backgroundTint="@{ColorUtils.applyAlpha(70, ColorUtils.getComplimentColor(childViewModel.color))}"
+        android:padding="@dimen/small_spacing"
+        android:onClick="@{(view) -> eventsHandler.onChildSelected(childViewModel)}">
+
+        <ImageView
+            android:layout_width="@dimen/xxlarge_size"
+            android:layout_height="@dimen/xxlarge_size"
+            android:src="@{childViewModel.avatar}"
+            android:background="@drawable/ic_circle_black_24dp"
+            app:placeholder="@{@drawable/ic_account_circle_black_24dp}"
+            app:placeholderTint="@{childViewModel.color}"
+            android:backgroundTint="@{childViewModel.color}"/>
+
+    </FrameLayout>
+</layout>

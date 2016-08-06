@@ -16,11 +16,6 @@
             android:label="@string/title_activity_pending_deliveries"
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <meta-data
@@ -28,8 +23,13 @@
             android:value="@string/google_api_key"/>
 
         <activity
-            android:name="me.darrillaga.prototype.viewer.MapsActivity"
+            android:name="me.darrillaga.prototype.viewer.childrenguardian.view.ChildrenLocationMapActivity"
             android:label="@string/title_activity_maps">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
