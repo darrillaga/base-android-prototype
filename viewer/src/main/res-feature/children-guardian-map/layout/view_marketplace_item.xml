@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="marketplaceItemViewModel"
+            type="me.darrillaga.prototype.viewer.childrenguardian.viewmodel.MarketplaceItemViewModel"/>
+
+        <variable
+            name="eventsHandler"
+            type="me.darrillaga.prototype.viewer.childrenguardian.view.MarketplaceEventsHandler"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/medium_spacing"
+        android:onClick="@{(view) -> eventsHandler.onItemSelected(marketplaceItemViewModel)}">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/xxxlarge_size"
+            android:layout_height="@dimen/xxxlarge_size"
+            android:src="@{marketplaceItemViewModel.imagePath}"
+            app:placeholder="@{@drawable/ic_gift_black_24dp}"
+            app:placeholderTint="@{@color/red_800}"
+            tools:src="@drawable/ic_gift_black_24dp"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:layout_toEndOf="@+id/image"
+            android:layout_toStartOf="@+id/price"
+            android:textStyle="bold"
+            android:text="@{marketplaceItemViewModel.name}"
+            tools:text="Pokebola"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:layout_toEndOf="@+id/image"
+            android:layout_toStartOf="@+id/price"
+            android:layout_below="@+id/name"
+            android:text="@{marketplaceItemViewModel.description}"
+            tools:text="Esta es una pokebola especial que los atrapa más fácil"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:minWidth="@dimen/large_size"
+            android:gravity="center"
+            android:text="@{marketplaceItemViewModel.price}"
+            android:textSize="@dimen/xlarge_text"
+            tools:text="$20"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/price"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:text="@{marketplaceItemViewModel.quantity}"
+            tools:text="4"/>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/image"
+            android:layout_below="@+id/description"
+            android:layout_marginEnd="@dimen/medium_negative_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:paddingEnd="@dimen/medium_spacing"
+            android:scrollbars="none"
+            android:clipToPadding="false"
+            android:visibility="@{marketplaceItemViewModel.childrenListVisible ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/amber_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/deep_purple_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/yellow_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/grey_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/brown_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/green_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/blue_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/red_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/amber_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/deep_purple_100"/>
+
+                <ImageView
+                    android:layout_width="@dimen/xlarge_size"
+                    android:layout_height="@dimen/xlarge_size"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    android:tint="@color/yellow_100"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+</layout>

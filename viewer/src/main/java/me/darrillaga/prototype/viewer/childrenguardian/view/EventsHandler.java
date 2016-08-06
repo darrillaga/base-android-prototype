@@ -10,4 +10,5 @@ public interface EventsHandler {
     void onToolsToggleClick(View view);
     void onDangerZoneCreatorClick(View view);
     void onSecureZoneCreatorClick(View view);
+    void onMarketPlaceClick(View view);
 }

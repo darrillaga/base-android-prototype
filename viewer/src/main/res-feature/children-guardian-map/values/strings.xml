@@ -2,4 +2,5 @@
 <resources>
     <string name="tap_to_create_danger_zone">Presiona en el mapa y crea una zona de peligro</string>
     <string name="tap_to_create_secure_zone">Presiona en el mapa y crea una zona segura</string>
+    <string name="payment_confirmation">Su pago ha sido realizado, su hijo va festejar el regalo!</string>
 </resources>

@@ -3,9 +3,11 @@ package me.darrillaga.prototype.viewer.childrenguardian.viewmodel;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import java.io.Serializable;
+
 import me.darrillaga.prototype.viewer.BR;
 
-public class ChildViewModel extends BaseObservable {
+public class ChildViewModel extends BaseObservable implements Serializable {
 
     private String name;
     private int color;

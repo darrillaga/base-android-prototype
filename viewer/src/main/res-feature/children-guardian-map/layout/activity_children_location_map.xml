@@ -13,96 +13,118 @@
             type="me.darrillaga.prototype.viewer.childrenguardian.view.EventsHandler"/>
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment android:id="@+id/map"
-                  android:name="com.google.android.gms.maps.SupportMapFragment"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  tools:context="me.darrillaga.prototype.viewer.MapsActivity"/>
-
-        <RelativeLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/children_list"
-                android:orientation="horizontal">
+            <fragment android:id="@+id/map"
+                      android:name="com.google.android.gms.maps.SupportMapFragment"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      tools:context="me.darrillaga.prototype.viewer.MapsActivity"/>
 
-                <ImageButton
-                    android:id="@+id/tools_switch"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/medium_spacing"
-                    android:layout_marginBottom="@dimen/medium_spacing"
-                    android:layout_marginLeft="@dimen/medium_spacing"
-                    android:padding="@dimen/small_spacing"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/ic_build_black_24dp"
-                    android:onClick="@{eventsHandler::onToolsToggleClick}"
-                    android:background="@color/white"/>
+                    android:layout_toStartOf="@+id/children_list"
+                    android:orientation="horizontal">
 
-                <HorizontalScrollView
-                    android:id="@+id/tools_wrapper"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                    <LinearLayout
-                        android:id="@+id/tools"
+                    <ImageButton
+                        android:id="@+id/tools_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/medium_spacing"
                         android:layout_marginBottom="@dimen/medium_spacing"
-                        android:layout_marginRight="@dimen/medium_spacing"
+                        android:layout_marginLeft="@dimen/medium_spacing"
                         android:padding="@dimen/small_spacing"
-                        android:background="@color/white"
-                        android:orientation="horizontal">
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/ic_build_black_24dp"
+                        android:onClick="@{eventsHandler::onToolsToggleClick}"
+                        android:background="@color/white"/>
 
-                        <ImageButton
-                            android:id="@+id/danger_zone"
+                    <HorizontalScrollView
+                        android:id="@+id/tools_wrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:id="@+id/tools"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_info_black_24dp"
-                            android:tint="@color/red_300"
-                            android:background="@null"
-                            android:onClick="@{eventsHandler::onDangerZoneCreatorClick}"/>
+                            android:layout_marginTop="@dimen/medium_spacing"
+                            android:layout_marginBottom="@dimen/medium_spacing"
+                            android:layout_marginRight="@dimen/medium_spacing"
+                            android:padding="@dimen/small_spacing"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/secure_area"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/medium_spacing"
-                            android:src="@drawable/ic_format_shapes_black_24dp"
-                            android:tint="@color/blue_300"
-                            android:background="@null"
-                            android:onClick="@{eventsHandler::onSecureZoneCreatorClick}"/>
+                            <ImageButton
+                                android:id="@+id/danger_zone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_info_black_24dp"
+                                android:tint="@color/red_300"
+                                android:background="@null"
+                                android:onClick="@{eventsHandler::onDangerZoneCreatorClick}"/>
 
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
+                            <ImageButton
+                                android:id="@+id/secure_area"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/medium_spacing"
+                                android:src="@drawable/ic_format_shapes_black_24dp"
+                                android:tint="@color/blue_300"
+                                android:background="@null"
+                                android:onClick="@{eventsHandler::onSecureZoneCreatorClick}"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/children_list"
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/children_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="?actionBarSize"
+                    android:layout_marginBottom="?actionBarSize"
+                    android:paddingTop="@dimen/small_spacing"
+                    android:paddingBottom="@dimen/small_spacing"
+                    android:clipToPadding="false"
+                    app:eventsHandler="@{eventsHandler}"
+                    app:dataSet="@{childrenViewModel.childViewModels}"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/soft_transparent_grey">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_marginLeft="@dimen/small_spacing"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="?actionBarSize"
-                android:layout_marginBottom="?actionBarSize"
-                android:paddingTop="@dimen/small_spacing"
-                android:paddingBottom="@dimen/small_spacing"
-                android:clipToPadding="false"
-                app:eventsHandler="@{eventsHandler}"
-                app:dataSet="@{childrenViewModel.childViewModels}"
-                android:layout_alignParentEnd="true"
-                android:background="@color/soft_transparent_grey">
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gift_black_24dp"
+                android:tint="@color/red_800"
+                android:layout_gravity="center_vertical|start"
+                app:elevation="@dimen/xsmall_size"
+                app:pressedTranslationZ="@dimen/small_size"
+                android:onClick="@{eventsHandler::onMarketPlaceClick}"/>
 
-            </android.support.v7.widget.RecyclerView>
+        </android.support.design.widget.CoordinatorLayout>
 
-        </RelativeLayout>
-    </android.support.design.widget.CoordinatorLayout>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 </layout>

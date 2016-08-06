@@ -1,33 +1,17 @@
 package me.darrillaga.prototype.viewer.childrenguardian.view;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolygonOptions;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import me.darrillaga.prototype.commons.util.Subscribers;
 import me.darrillaga.prototype.viewer.R;
@@ -42,61 +26,30 @@ import rx.subjects.BehaviorSubject;
 import rx.subscriptions.CompositeSubscription;
 import se.emilsjolander.intentbuilder.IntentBuilder;
 
+import static me.darrillaga.prototype.viewer.childrenguardian.view.ZonesRenderer.CIRCLE_ADDITION;
+import static me.darrillaga.prototype.viewer.childrenguardian.view.ZonesRenderer.POLYGON_ADDITION;
+
 @IntentBuilder
 public class ChildrenLocationMapActivity extends FragmentActivity
-        implements OnMapReadyCallback, EventsHandler {
-
-    private static final int NO_ADDITION = -1;
-    private static final int CIRCLE_ADDITION = 0;
-    private static final int POLYGON_ADDITION = 1;
+        implements OnMapReadyCallback, EventsHandler, MarketplaceFragment.Interactions {
 
     private GoogleMap mMap;
     private ActivityChildrenLocationMapBinding mActivityChildrenLocationMapBinding;
-    private ChildViewModel mCurrentChildViewModel;
     private ChildrenViewModel mChildrenViewModel;
 
     private BehaviorSubject<GoogleMap> mMapBehaviourSubject = BehaviorSubject.create();
 
-    private int nextAddition;
-
-    private Map<ChildViewModel, Marker> mChildViewModelMarkerMap;
-
     private CompositeSubscription mCompositeSubscription;
 
-    private LocationSource mMontevideoLocationSource = new LocationSource() {
-        @Override
-        public void activate(OnLocationChangedListener onLocationChangedListener) {
-            Location location = new Location("Montevideo");
+    private ZonesRenderer mZonesRenderer;
 
-            LatLng montevideo = new LatLng(-34.90111, -56.16453);
+    private ChildrenMarkerDrawer mChildrenMarkerDrawer;
 
-            location.setLatitude(montevideo.latitude);
-            location.setLongitude(montevideo.longitude);
-            location.setAccuracy(100);
-
-            onLocationChangedListener.onLocationChanged(location);
-
-            mMap.moveCamera(
-                    CameraUpdateFactory.newCameraPosition(
-                            CameraPosition.builder()
-                                    .zoom(12)
-                                    .target(montevideo)
-                                    .build()
-                    )
-            );
-        }
-
-        @Override
-        public void deactivate() {
-
-        }
-    };
+    private ChildViewModel mCurrentChildViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mChildViewModelMarkerMap = new HashMap<>();
 
         mChildrenViewModel = new ChildrenViewModel(getResources().getIntArray(R.array.material_colors));
 
@@ -117,13 +70,17 @@ public class ChildrenLocationMapActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMapBehaviourSubject.onNext(mMap);
+        mChildrenMarkerDrawer = new ChildrenMarkerDrawer(mMap);
 
-        mMap.setLocationSource(mMontevideoLocationSource);
+        mMap.setLocationSource(new MontevideoLocationSource(mMap));
 
-        mMap.setOnMapClickListener(this::renderShape);
+        mZonesRenderer = new ZonesRenderer(this, mMap);
+
+        mMap.setOnMapClickListener(mZonesRenderer::renderShape);
 
         requestLocationPermissions();
+
+        mMapBehaviourSubject.onNext(mMap);
     }
 
     private void requestLocationPermissions() {
@@ -147,7 +104,7 @@ public class ChildrenLocationMapActivity extends FragmentActivity
                 (googleMap, childViewModel) -> childViewModel
         )
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::drawMarkerOrGet);
+                .subscribe(childViewModel -> mChildrenMarkerDrawer.drawMarkerOrGet(childViewModel));
     }
 
     @Override
@@ -165,41 +122,10 @@ public class ChildrenLocationMapActivity extends FragmentActivity
         mCompositeSubscription.unsubscribe();
     }
 
-    private Marker drawMarkerOrGet(ChildViewModel childViewModel) {
-        Marker marker = mChildViewModelMarkerMap.get(childViewModel);
-
-        if (marker == null) {
-            LatLng position = new LatLng(childViewModel.getLatitude(), childViewModel.getLongitude());
-
-            float[] hsv = new float[3];
-
-            Color.colorToHSV(childViewModel.getColor(), hsv);
-
-            marker = mMap.addMarker(
-                    new MarkerOptions()
-                            .position(position)
-                            .title(childViewModel.getName())
-                            .icon(BitmapDescriptorFactory.defaultMarker(hsv[0]))
-            );
-
-            mChildViewModelMarkerMap.put(childViewModel, marker);
-        }
-
-        return marker;
-    }
-
     @Override
     public void onChildSelected(ChildViewModel childViewModel) {
-        if (mCurrentChildViewModel != null) {
-            mCurrentChildViewModel.setSelected(false);
-        }
-
         mCurrentChildViewModel = childViewModel;
-        mCurrentChildViewModel.setSelected(true);
-
-        Marker marker = drawMarkerOrGet(mCurrentChildViewModel);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+        mChildrenMarkerDrawer.onChildSelected(childViewModel);
     }
 
     @Override
@@ -218,52 +144,39 @@ public class ChildrenLocationMapActivity extends FragmentActivity
     @Override
     public void onDangerZoneCreatorClick(View view) {
         Toast.makeText(this, R.string.tap_to_create_danger_zone, Toast.LENGTH_LONG).show();
-        nextAddition = CIRCLE_ADDITION;
+        mZonesRenderer.setRenderType(CIRCLE_ADDITION);
     }
 
     @Override
     public void onSecureZoneCreatorClick(View view) {
         Toast.makeText(this, R.string.tap_to_create_secure_zone, Toast.LENGTH_LONG).show();
-        nextAddition = POLYGON_ADDITION;
+        mZonesRenderer.setRenderType(POLYGON_ADDITION);
     }
 
-    private void renderShape(LatLng latLng) {
-        switch (nextAddition) {
-            case CIRCLE_ADDITION:
-                renderCircle(latLng);
-                break;
-            case POLYGON_ADDITION:
-                renderPolygon(latLng);
-                break;
+    @Override
+    public void onMarketPlaceClick(View view) {
+
+        String tag = MarketplaceFragment.class.getName();
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
+
+        if (fragment != null) {
+            getSupportFragmentManager().popBackStack(tag, 0);
+            return;
         }
-        nextAddition = NO_ADDITION;
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(
+                        R.id.fragment_container,
+                        new MarketplaceFragmentBuilder(mChildrenViewModel.childViewModels, mCurrentChildViewModel).build(),
+                        tag
+                )
+                .addToBackStack(tag)
+                .commit();
     }
 
-    private void renderPolygon(LatLng latLng) {
-        int blueColor = ContextCompat.getColor(this, R.color.blue_300);
-        mMap.addPolygon(
-                new PolygonOptions()
-                        .fillColor(ColorUtils.applyAlpha(100, blueColor))
-                        .geodesic(true)
-                        .strokeWidth(0)
-                        .add(
-                                new LatLng(latLng.latitude + 0.004, latLng.longitude + 0.004),
-                                new LatLng(latLng.latitude, latLng.longitude + 0.01),
-                                new LatLng(latLng.latitude - 0.004, latLng.longitude + 0.004),
-                                new LatLng(latLng.latitude - 0.003, latLng.longitude - 0.003),
-                                new LatLng(latLng.latitude + 0.003, latLng.longitude - 0.003)
-                        )
-        );
-    }
-
-    private void renderCircle(LatLng latLng) {
-        int redColor = ContextCompat.getColor(this, R.color.red_500);
-        mMap.addCircle(
-                new CircleOptions()
-                        .fillColor(ColorUtils.applyAlpha(100, redColor))
-                        .strokeWidth(0)
-                        .radius(500)
-                        .center(latLng)
-        );
+    @Override
+    public void onPurchaseConfirmed() {
+        getSupportFragmentManager().popBackStack();
     }
 }

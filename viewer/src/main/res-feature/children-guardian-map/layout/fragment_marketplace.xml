@@ -1,0 +1,73 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="me.darrillaga.prototype.viewer.childrenguardian.viewmodel.ChildViewModel"/>
+        <import type="java.util.List"/>
+
+        <variable
+            name="childViewModelList"
+            type="List&lt;ChildViewModel&gt;"/>
+
+        <variable
+            name="marketplaceViewModel"
+            type="me.darrillaga.prototype.viewer.childrenguardian.viewmodel.MarketplaceViewModel"/>
+
+        <variable
+            name="eventsHandler"
+            type="me.darrillaga.prototype.viewer.childrenguardian.view.MarketplaceEventsHandler"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:titleTextColor="@color/white"
+                    app:title="Tienda">
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/children_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/app_bar"
+                android:clipToPadding="false"
+                app:eventsHandler="@{eventsHandler}"
+                app:dataSet="@{marketplaceViewModel.marketplaceItemViewModels}"
+                android:layout_alignParentEnd="true"
+                android:background="@color/soft_transparent_grey">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/medium_spacing"
+            android:layout_marginBottom="@dimen/medium_spacing"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/ic_shopping_cart_black_24dp"
+            android:tint="@color/red_800"
+            app:elevation="@dimen/xsmall_size"
+            app:pressedTranslationZ="@dimen/small_size"
+            android:onClick="@{eventsHandler::onGoToCheckoutClick}"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

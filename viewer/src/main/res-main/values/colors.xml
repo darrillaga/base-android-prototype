@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Colors for the app -->
-    <color name="primary">@color/green_500</color>
-    <color name="primary_dark">@color/green_700</color>
-    <color name="primary_light">@color/green_100</color>
-    <color name="accent">@color/lime_500</color>
-    <color name="primary_text">@color/grey_900</color>
-    <color name="secondary_text">@color/grey_600</color>
-    <color name="icons">@color/white</color>
-    <color name="divider">@color/grey_400</color>
+    <color name="colorPrimary">@color/green_500</color>
+    <color name="colorPrimaryDark">@color/green_700</color>
+    <color name="colorPrimaryLight">@color/green_100</color>
+    <color name="colorAccent">@color/lime_500</color>
+    <color name="colorPrimaryText">@color/grey_900</color>
+    <color name="colorSecondaryText">@color/grey_600</color>
+    <color name="colorIcons">@color/white</color>
+    <color name="colorDivider">@color/grey_400</color>
     <color name="black_overlay">#66000000</color>
     <color name="soft_transparent_grey">#88EEEEEE</color>
 </resources>
