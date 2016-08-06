@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="action_bar_size">48dp</dimen>
+
+    <dimen name="medium_spacing">16dp</dimen>
+    <dimen name="medium_negative_spacing">-16dp</dimen>
+
+    <dimen name="large_spacing">24dp</dimen>
+    <dimen name="large_negative_spacing">-24dp</dimen>
+
+    <dimen name="xlarge_negative_spacing">-36dp</dimen>
+    <dimen name="xlarge_spacing">36dp</dimen>
+
+    <dimen name="small_spacing">8dp</dimen>
+    <dimen name="small_negative_spacing">-8dp</dimen>
+
+    <dimen name="xsmall_spacing">4dp</dimen>
+    <dimen name="xsmall_negative_spacing">-4dp</dimen>
+
+    <dimen name="xxsmall_spacing">2dp</dimen>
+    <dimen name="xxsmall_negative_spacing">-2dp</dimen>
+
+    <dimen name="xxxsmall_spacing">1dp</dimen>
+    <dimen name="xxxsmall_negative_spacing">-1dp</dimen>
+
+    <dimen name="xxlarge_spacing">48dp</dimen>
+    <dimen name="xxlarge_negative_spacing">-48dp</dimen>
+
+    <dimen name="xxlarge_size">48dp</dimen>
+    <dimen name="medium_size">23dp</dimen>
+    <dimen name="large_size">24dp</dimen>
+    <dimen name="xlarge_size">36dp</dimen>
+    <dimen name="xxxlarge_size">72dp</dimen>
+    <dimen name="xxxxlarge_size">92dp</dimen>
+    <dimen name="xxxsmall_size">1dp</dimen>
+    <dimen name="xxxxsmall_size">1dp</dimen>
+
+    <dimen name="xxxxlarge_text">32sp</dimen>
+    <dimen name="xxxlarge_text">24sp</dimen>
+    <dimen name="xxlarge_text">22sp</dimen>
+    <dimen name="xlarge_text">20sp</dimen>
+    <dimen name="large_text">18sp</dimen>
+    <dimen name="medium_text">16sp</dimen>
+    <dimen name="small_text">14sp</dimen>
+    <dimen name="xsmall_text">12sp</dimen>
+    <dimen name="xxsmall_text">10sp</dimen>
+    <dimen name="xxxsmall_text">8sp</dimen>
+    <dimen name="xxxxsmall_text">6sp</dimen>
+
+    <dimen name="text_separation">4dp</dimen>
+
+    <dimen name="unity">1dp</dimen>
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="medium_button_size">48dp</dimen>
+    <dimen name="xmedium_button_size">52dp</dimen>
+    <dimen name="xxmedium_button_size">56dp</dimen>
+    <dimen name="xxxmedium_button_size">60dp</dimen>
+
+</resources>

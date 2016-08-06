@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DataBindingAdapterUtils {
 
-    public static <T> BaseAdapter<T, DataBindingViewHolder<T>> createAdapter(List<T> list, int layout, int viewModelVariableId) {
+    public static <T, BINDING extends ViewDataBinding> BaseAdapter<T, DataBindingViewHolder<T, BINDING>> createAdapter(List<T> list, int layout, int viewModelVariableId) {
         return new BaseAdapter<>(
                 list,
                 DataBindingAdapterUtils.createDataBindingViewHolderBinder(),
@@ -17,11 +17,11 @@ public class DataBindingAdapterUtils {
         );
     }
 
-    public static <T, R extends DataBindingViewHolder<T>> BaseAdapter.ViewHolderBinder<T, R> createDataBindingViewHolderBinder() {
-        return (viewHolder, data) -> viewHolder.bindTo(data);
+    public static <T, BINDING extends ViewDataBinding, R extends DataBindingViewHolder<T, BINDING>> BaseAdapter.ViewHolderBinder<T, R> createDataBindingViewHolderBinder() {
+        return (viewHolder, data) -> viewHolder.bindTo(data).bind();
     }
 
-    public static <T> BaseAdapter.ViewHolderCreator<DataBindingViewHolder<T>> createDataBindingViewHolderCreator(int layout, int viewModelVariableId) {
+    public static <T, BINDING extends ViewDataBinding> BaseAdapter.ViewHolderCreator<DataBindingViewHolder<T, BINDING>> createDataBindingViewHolderCreator(int layout, int viewModelVariableId) {
         return (parent, viewType) -> new DataBindingViewHolder<>(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.getContext()),
@@ -33,22 +33,36 @@ public class DataBindingAdapterUtils {
         );
     }
 
-    public static class DataBindingViewHolder<T> extends RecyclerView.ViewHolder {
+    public static class DataBindingViewHolder<T, BINDING extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
-        private ViewDataBinding mViewDataBinding;
+        private BINDING mViewDataBinding;
         private int mViewModelVariableId;
 
-        public DataBindingViewHolder(ViewDataBinding viewDataBinding, int viewModelVariableId) {
+        public DataBindingViewHolder(BINDING viewDataBinding, int viewModelVariableId) {
             super(viewDataBinding.getRoot());
 
             mViewDataBinding = viewDataBinding;
             mViewModelVariableId = viewModelVariableId;
         }
 
-        public void bindTo(T viewModel) {
+        public DataBindingViewHolder<T, BINDING> bindTo(T viewModel) {
             mViewDataBinding.setVariable(mViewModelVariableId, viewModel);
 
+            return this;
+        }
+
+        public DataBindingViewHolder<T, BINDING> execute(Action1<BINDING> bindingAction) {
+            bindingAction.call(mViewDataBinding);
+
+            return this;
+        }
+
+        public void bind() {
             mViewDataBinding.executePendingBindings();
         }
+    }
+
+    public interface Action1<T> {
+        void call(T element);
     }
 }
