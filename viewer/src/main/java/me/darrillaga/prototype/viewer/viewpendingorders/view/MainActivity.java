@@ -4,17 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import me.darrillaga.prototype.commons.BaseActivity;
-import me.darrillaga.prototype.viewer.MapsActivityIntentBuilder;
 import me.darrillaga.prototype.viewer.R;
 import se.emilsjolander.intentbuilder.IntentBuilder;
 
 
 @IntentBuilder
-public class PendingDeliveryOrdersActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        PendingDeliveryOrdersActivityIntentBuilder.inject(getIntent(), this);
+        MainActivityIntentBuilder.inject(getIntent(), this);
 
         super.onCreate(savedInstanceState);
 
@@ -23,10 +22,8 @@ public class PendingDeliveryOrdersActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(
                         R.id.container,
-                        new PendingDeliveryOrdersFragmentBuilder().build(),
-                        PendingDeliveryOrdersFragment.class.getName()
+                        new MainFragmentBuilder().build(),
+                        MainFragment.class.getName()
                 ).commit();
-
-        startActivity(new MapsActivityIntentBuilder().build(this));
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+        style="@style/Base.ContainerWithoutPadding"
+        android:fitsSystemWindows="true">
+
+            <RelativeLayout
+                style="@style/Base.Container"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:max="1000"/>
+            </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

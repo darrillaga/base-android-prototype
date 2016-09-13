@@ -50,6 +50,7 @@ dependencies {
     compile 'net.sourceforge.streamsupport:streamsupport:1.4.3'
 
     compile "com.pascalwelsch.compositeandroid:activity:$compositeandroid_version"
+    compile "com.pascalwelsch.compositeandroid:fragment:$compositeandroid_version"
 
     compile 'io.reactivex:rxjava:1.1.3'
 

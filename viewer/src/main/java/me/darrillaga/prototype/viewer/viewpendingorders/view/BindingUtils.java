@@ -26,11 +26,11 @@ public class BindingUtils {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView.setAdapter(
-                DataBindingAdapterUtils.createAdapter(
-                        deliveryOrderViewModels, R.layout.view_delivery_order_list_item, BR.viewModel
-                )
-        );
+//        recyclerView.setAdapter(
+//                DataBindingAdapterUtils.createAdapter(
+//                        deliveryOrderViewModels, R.layout.view_delivery_order_list_item, BR.viewModel
+//                )
+//        );
 
         deliveryOrderViewModels.addOnListChangedCallback(
                 ObservableListAdapterObservers.createObservableListAdapterBridge(

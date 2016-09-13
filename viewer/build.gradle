@@ -49,7 +49,7 @@ android {
         main {
             res.srcDirs = [
                     'src/main/res-main',
-                    'src/main/res-feature/view-pending-deliveries'
+                    'src/main/res-feature/main'
             ]
         }
     }
@@ -88,6 +88,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile "com.pascalwelsch.compositeandroid:activity:$compositeandroid_version"
+    compile "com.pascalwelsch.compositeandroid:fragment:$compositeandroid_version"
 
     compile 'com.kelvinapps:rxfirebase:0.0.10'
 
@@ -104,6 +105,11 @@ dependencies {
     compile 'com.hannesdorfmann.fragmentargs:annotation:3.0.2'
     compile 'frankiesardo:icepick:3.2.0'
     compile 'se.emilsjolander:intentbuilder-api:0.14.0'
+
+    compile 'com.github.ytai.ioio:IOIOLibAndroid:5.07'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.07'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.07'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.07'
 
     compile 'com.android.support:appcompat-v7:24.0.0'
 

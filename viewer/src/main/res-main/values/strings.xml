@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">Torconudo viewer</string>
+    <string name="app_name">Prototype viewer</string>
 
-    <string name="title_activity_pending_deliveries">PendingDeliveriesActivity</string>
+    <string name="title_activity_pending_deliveries">Main activity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_maps">Map</string>
 </resources>
