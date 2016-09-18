@@ -1,6 +1,7 @@
 package me.darrillaga.prototype.viewer.shelters.viewmodel;
 
 import android.databinding.BaseObservable;
+import android.databinding.ObservableBoolean;
 
 import com.github.mikephil.charting.data.Entry;
 
@@ -11,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 
 public class SheltersItemViewModel extends BaseObservable {
+
+    public final ObservableBoolean refreshing;
 
     private long mId;
 
@@ -30,10 +33,12 @@ public class SheltersItemViewModel extends BaseObservable {
 
     public SheltersItemViewModel(long id) {
         mId = id;
+        refreshing = new ObservableBoolean();
         init();
     }
 
     public SheltersItemViewModel() {
+        refreshing = new ObservableBoolean();
         init();
         generateData();
     }
@@ -43,7 +48,11 @@ public class SheltersItemViewModel extends BaseObservable {
     }
 
     public String getName() {
-        return mName  + " - " + mDate;
+        if (mName == null) {
+            return "";
+        } else {
+            return mName + " - " + mDate;
+        }
     }
 
     public String getDay() {
@@ -96,7 +105,18 @@ public class SheltersItemViewModel extends BaseObservable {
 
     public Observable<SheltersItemViewModel> fetch() {
         return Observable.just(this).delay(3, TimeUnit.SECONDS)
-                .doOnNext(o -> generateData());
+                .doOnNext(o -> generateData())
+                .doOnSubscribe(() -> refreshing.set(true))
+                .doAfterTerminate(() -> refreshing.set(false));
+    }
+
+    public void onRecipeChanged(long recipeId) {
+        int oldDay = mDay;
+        mDay += 4;
+
+        for (int index = oldDay; index <= mDay; index++) {
+            addEntry(index);
+        }
     }
 
     private void generateData() {

@@ -1,6 +1,8 @@
 package me.darrillaga.prototype.viewer.shelters.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,8 @@ import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 
 import me.darrillaga.prototype.commons.ui.ActivityFragmentsInteractionsHelper;
 import me.darrillaga.prototype.viewer.databinding.FragmentShelterShowBinding;
+import me.darrillaga.prototype.viewer.recipes.view.RecipesActivity;
+import me.darrillaga.prototype.viewer.recipes.view.RecipesActivityIntentBuilder;
 import me.darrillaga.prototype.viewer.shelters.viewmodel.SheltersItemViewModel;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -24,6 +28,8 @@ public class ShelterShowFragment extends Fragment implements SheltersItemEventsH
 
     @Arg
     long shelterItemId;
+
+    private static final int CHANGE_RECEIPT_CODE = 0;
 
     private FragmentShelterShowBinding mFragmentShelterShowBinding;
 
@@ -75,7 +81,27 @@ public class ShelterShowFragment extends Fragment implements SheltersItemEventsH
 
     @Override
     public void onChangeRecipeClick(View view) {
-        //TODO show recipe list activity
+        startActivityForResult(new RecipesActivityIntentBuilder().build(getActivity()), CHANGE_RECEIPT_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CHANGE_RECEIPT_CODE && resultCode == Activity.RESULT_OK) {
+            onRecipeChanged(data.getLongExtra(RecipesActivity.RESULT_SELECTED_RECIPE_ID_LONG, -1));
+        }
+    }
+
+    private void onRecipeChanged(long id) {
+        mSheltersItemViewModel.onRecipeChanged(id);
+    }
+
+    @Override
+    public void refresh() {
+        mCompositeSubscription.add(
+                subscribeToFetchItems()
+        );
     }
 
     public interface Interactions {

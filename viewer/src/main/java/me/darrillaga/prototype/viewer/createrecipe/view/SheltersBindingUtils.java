@@ -21,7 +21,7 @@
 //public class SheltersBindingUtils {
 //
 //    @BindingAdapter(value = { "app:dataSet", "app:eventsHandler" })
-//    public static void bindDataSet(RecyclerView recyclerView, ObservableList<RecipesItemViewModel> mRecipesItemViewModels, RecipesEventsHandler eventsHandler) {
+//    public static void bindDataSet(RecyclerView recyclerView, ObservableList<RecipesItemViewModel> recipesItemViewModels, RecipesEventsHandler eventsHandler) {
 //
 //        if (recyclerView.getTag(R.id.adapterAdded) != null) {
 //            return;
@@ -35,7 +35,7 @@
 //
 //        recyclerView.setAdapter(
 //                new BaseAdapter<>(
-//                        mRecipesItemViewModels,
+//                        recipesItemViewModels,
 //                        (viewHolder, data) -> viewHolder.bindTo(data).execute(
 //                                element -> element.setVariable(BR.eventsHandler, eventsHandler)
 //                        ).bind(),
@@ -43,9 +43,9 @@
 //                )
 //        );
 //
-//        mRecipesItemViewModels.addOnListChangedCallback(
+//        recipesItemViewModels.addOnListChangedCallback(
 //                ObservableListAdapterObservers.createObservableListAdapterBridge(
-//                        mRecipesItemViewModels, null, recyclerView.getAdapter()
+//                        recipesItemViewModels, null, recyclerView.getAdapter()
 //                )
 //        );
 //

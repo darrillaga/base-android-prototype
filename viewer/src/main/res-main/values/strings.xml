@@ -2,6 +2,7 @@
     <string name="app_name">Cattle Jedi</string>
 
     <string name="title_activity_shelters">Corrales</string>
+    <string name="title_activity_recipes">Dietas</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_maps">Map</string>
@@ -14,4 +15,6 @@
 
     <string name="thin_thick_index">Índice Flaco Gordo ACG</string>
     <string name="cost_per_meat_kg">Costo por Kg de carne</string>
+
+    <string name="shelters_limit_reached">Límite de corrales gratis alcanzado, por favor contáctenos por más corrales</string>
 </resources>

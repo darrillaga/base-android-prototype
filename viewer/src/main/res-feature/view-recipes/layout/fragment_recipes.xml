@@ -36,18 +36,25 @@
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/children_list"
+            <me.darrillaga.prototype.view.util.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/app_bar"
-                android:clipToPadding="false"
-                app:eventsHandler="@{eventsHandler}"
-                app:dataSet="@{sheltersViewModel.sheltersItemViewModels}"
-                android:layout_alignParentEnd="true"
-                android:background="@color/soft_transparent_grey">
+                app:refreshing="@{recipesViewModel.refreshing}"
+                app:onRefreshListener="@{() -> eventsHandler.refresh()}">
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/children_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    app:eventsHandler="@{eventsHandler}"
+                    app:dataSet="@{recipesViewModel.recipesItemViewModels}"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/soft_transparent_grey">
+
+                </android.support.v7.widget.RecyclerView>
+            </me.darrillaga.prototype.view.util.SwipeRefreshLayout>
         </RelativeLayout>
 
         <android.support.design.widget.FloatingActionButton

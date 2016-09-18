@@ -42,7 +42,7 @@ public class SheltersBindingUtils {
                         (viewHolder, data) -> viewHolder.bindTo(data).execute(
                                 element -> element.setVariable(BR.eventsHandler, eventsHandler)
                         ).bind(),
-                        DataBindingAdapterUtils.createDataBindingViewHolderCreator(R.layout.view_shelter_item, BR.sheltersItemViewModel)
+                        DataBindingAdapterUtils.createDataBindingViewHolderCreator(R.layout.view_shelter_item, BR.recipesItemViewModel)
                 )
         );
 

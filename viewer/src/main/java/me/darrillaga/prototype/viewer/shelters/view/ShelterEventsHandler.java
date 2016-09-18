@@ -8,4 +8,5 @@ public interface ShelterEventsHandler {
 
     void onItemSelected(SheltersItemViewModel sheltersItemViewModel);
     void onAddShelterClick(View view);
+    void refresh();
 }

@@ -6,73 +6,46 @@ import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import me.darrillaga.prototype.viewer.shelters.viewmodel.SheltersItemViewModel;
+import rx.Observable;
 
 public class RecipesItemViewModel extends BaseObservable {
 
+    private long mId;
+
     private String mName;
-    private int mDay;
-    private String mDate;
-    private List<Entry> mEntryList;
-    private int mInitialAverageWeightInKg;
-    private int mFinalAverageWeightInKg;
-    private int mCurrentAverageWeightInKg;
-    private int mMaxExpectedDays;
 
-    public RecipesItemViewModel() {
-        mDate = "11-12-16";
-        mDay = 40;
-        mMaxExpectedDays = 100;
-        mInitialAverageWeightInKg = 320;
-        mCurrentAverageWeightInKg = 420;
-        mFinalAverageWeightInKg = 520;
-
-        mName = "Corral " + mInitialAverageWeightInKg + " Kg";
-
-        mEntryList = new ArrayList<>();
-
-        for (int index = 1; index <= mDay; index++) {
-            addEntry(index);
-        }
+    public RecipesItemViewModel(long id) {
+        mId = id;
+        init();
     }
 
-    private void addEntry(int index) {
-        Entry entry = new Entry();
-        entry.setX(index);
-
-        if (index == 1) {
-            entry.setY(mInitialAverageWeightInKg);
-        } else  {
-            entry.setY(mInitialAverageWeightInKg + ((mCurrentAverageWeightInKg - mInitialAverageWeightInKg) * index) / mDay);
-        }
-
-        mEntryList.add(entry);
+    public RecipesItemViewModel() {
+        init();
+        generateData();
     }
 
     public String getName() {
-        return mName  + " - " + mDate;
+        return mName;
     }
 
-    public String getDay() {
-        return "Día " + mDay;
+    public long getId() {
+        return mId;
     }
 
-    public String getDate() {
-        return mDate;
+    public Observable<RecipesItemViewModel> fetch() {
+        return Observable.just(this).delay(3, TimeUnit.SECONDS)
+                .doOnNext(o -> generateData());
     }
 
-    public List<Entry> getEntryList() {
-        return mEntryList;
+    private void init() {
+
     }
 
-    public int getInitialAverageWeightInKg() {
-        return mInitialAverageWeightInKg;
+    private void generateData() {
+
     }
 
-    public int getFinalAverageWeightInKg() {
-        return mFinalAverageWeightInKg;
-    }
-
-    public int getMaxExpectedDays() {
-        return mMaxExpectedDays;
-    }
 }

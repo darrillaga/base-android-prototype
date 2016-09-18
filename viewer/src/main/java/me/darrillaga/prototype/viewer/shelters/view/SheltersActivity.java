@@ -3,6 +3,7 @@ package me.darrillaga.prototype.viewer.shelters.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import me.darrillaga.prototype.commons.BaseActivity;
 import me.darrillaga.prototype.viewer.R;
@@ -36,7 +37,6 @@ public class SheltersActivity extends BaseActivity
                         new SheltersFragmentBuilder().build(),
                         tag
                 )
-                .addToBackStack(tag)
                 .commit();
     }
 
@@ -62,7 +62,7 @@ public class SheltersActivity extends BaseActivity
 
     @Override
     public void onAddShelterClick() {
-
+        Toast.makeText(this, R.string.shelters_limit_reached, Toast.LENGTH_LONG).show();
     }
 
     @Override

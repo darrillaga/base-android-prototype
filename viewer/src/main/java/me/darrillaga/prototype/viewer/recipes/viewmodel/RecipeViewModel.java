@@ -2,6 +2,7 @@ package me.darrillaga.prototype.viewer.recipes.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 
 import java.util.concurrent.TimeUnit;
@@ -12,13 +13,17 @@ import rx.schedulers.Schedulers;
 
 public class RecipeViewModel extends BaseObservable {
 
-    public final ObservableList<RecipesItemViewModel> mRecipesItemViewModels;
+    public final ObservableList<RecipesItemViewModel> recipesItemViewModels;
+    public final ObservableBoolean refreshing;
+
     private final ObservableList<RecipesItemViewModel> mInternalRecipesItemViewModels;
 
     public RecipeViewModel() {
-        mRecipesItemViewModels = new ObservableArrayList<>();
+        recipesItemViewModels = new ObservableArrayList<>();
+        refreshing = new ObservableBoolean();
+
         mInternalRecipesItemViewModels = ObservableDispatcherList
-                .createMainThreadObservableList(mRecipesItemViewModels);
+                .createMainThreadObservableList(recipesItemViewModels);
     }
 
     public Observable<RecipesItemViewModel> fetchItems() {
@@ -27,7 +32,9 @@ public class RecipeViewModel extends BaseObservable {
                         integer -> Observable.just(integer).delay(1000, TimeUnit.MILLISECONDS)
                 )
                 .map(this::buildMarketplaceItemViewModel)
-                .doOnNext(mInternalRecipesItemViewModels::add);
+                .doOnNext(mInternalRecipesItemViewModels::add)
+                .doOnSubscribe(() -> refreshing.set(true))
+                .doAfterTerminate(() -> refreshing.set(false));
     }
 
     private RecipesItemViewModel buildMarketplaceItemViewModel(int index) {

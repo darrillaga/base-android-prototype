@@ -2,6 +2,7 @@ package me.darrillaga.prototype.viewer.shelters.viewmodel;
 
 import android.databinding.BaseObservable;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 
 import java.util.concurrent.TimeUnit;
@@ -13,10 +14,14 @@ import rx.schedulers.Schedulers;
 public class ShelterViewModel extends BaseObservable {
 
     public final ObservableList<SheltersItemViewModel> sheltersItemViewModels;
+    public final ObservableBoolean refreshing;
+
     private final ObservableList<SheltersItemViewModel> mInternalSheltersItemViewModels;
 
     public ShelterViewModel() {
         sheltersItemViewModels = new ObservableArrayList<>();
+        refreshing = new ObservableBoolean();
+
         mInternalSheltersItemViewModels = ObservableDispatcherList
                 .createMainThreadObservableList(sheltersItemViewModels);
     }
@@ -27,7 +32,9 @@ public class ShelterViewModel extends BaseObservable {
                         integer -> Observable.just(integer).delay(1000, TimeUnit.MILLISECONDS)
                 )
                 .map(this::buildMarketplaceItemViewModel)
-                .doOnNext(mInternalSheltersItemViewModels::add);
+                .doOnNext(mInternalSheltersItemViewModels::add)
+                .doOnSubscribe(() -> refreshing.set(true))
+                .doAfterTerminate(() -> refreshing.set(false));
     }
 
     private SheltersItemViewModel buildMarketplaceItemViewModel(int index) {

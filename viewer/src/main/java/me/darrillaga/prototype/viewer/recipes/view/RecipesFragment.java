@@ -12,7 +12,6 @@ import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 
 import me.darrillaga.prototype.commons.ui.ActivityFragmentsInteractionsHelper;
 import me.darrillaga.prototype.viewer.databinding.FragmentRecipesBinding;
-import me.darrillaga.prototype.viewer.databinding.FragmentSheltersBinding;
 import me.darrillaga.prototype.viewer.recipes.viewmodel.RecipeViewModel;
 import me.darrillaga.prototype.viewer.recipes.viewmodel.RecipesItemViewModel;
 import rx.Subscription;
@@ -78,11 +77,17 @@ public class RecipesFragment extends Fragment implements RecipesEventsHandler {
 
     @Override
     public void onAddRecipeClick(View view) {
-        mInteractions.onRecipeAdded();
+
+    }
+
+    @Override
+    public void refresh() {
+        mCompositeSubscription.add(
+                subscribeToFetchItems()
+        );
     }
 
     public interface Interactions {
-        void onRecipeAdded();
         void onRecipeSelected(RecipesItemViewModel recipesItemViewModel);
     }
 }

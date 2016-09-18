@@ -8,4 +8,5 @@ public interface RecipesEventsHandler {
 
     void onItemSelected(RecipesItemViewModel recipesItemViewModel);
     void onAddRecipeClick(View view);
+    void refresh();
 }

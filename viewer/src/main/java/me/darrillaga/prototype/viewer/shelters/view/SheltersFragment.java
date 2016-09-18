@@ -80,6 +80,13 @@ public class SheltersFragment extends Fragment implements ShelterEventsHandler {
         mInteractions.onAddShelterClick();
     }
 
+    @Override
+    public void refresh() {
+        mCompositeSubscription.add(
+                subscribeToFetchItems()
+        );
+    }
+
     public interface Interactions {
         void onAddShelterClick();
         void onItemSelected(SheltersItemViewModel sheltersItemViewModel);
