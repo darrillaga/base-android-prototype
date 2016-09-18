@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">Torconudo viewer</string>
+    <string name="app_name">Cattle Jedi</string>
 
-    <string name="title_activity_pending_deliveries">PendingDeliveriesActivity</string>
+    <string name="title_activity_shelters">Corrales</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="shelters_title">Mis corrales</string>
+    <string name="change_recipe">Cambiar dieta</string>
+
+    <string name="sell_price">Precio venta: %1$s USD/Kg</string>
+    <string name="recipe_price">Precio compra de ración: %1$s USD/Kg</string>
+
+    <string name="thin_thick_index">Índice Flaco Gordo ACG</string>
+    <string name="cost_per_meat_kg">Costo por Kg de carne</string>
 </resources>

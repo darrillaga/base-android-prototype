@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="create_delivery_order_hint">Crea una órden</string>
-    <string name="create">Create</string>
-    <string name="usernameTag">-- %1$s</string>
-</resources>

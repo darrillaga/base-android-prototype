@@ -49,7 +49,9 @@ android {
         main {
             res.srcDirs = [
                     'src/main/res-main',
-                    'src/main/res-feature/view-pending-deliveries'
+                    'src/main/res-feature/view-pending-deliveries',
+                    'src/main/res-feature/view-shelters',
+                    'src/main/res-feature/view-recipes'
             ]
         }
     }
@@ -108,6 +110,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
 
     compile 'com.android.support:multidex:1.0.0'
+
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
 
     apt 'com.hannesdorfmann.fragmentargs:processor:3.0.2'
     apt 'se.emilsjolander:intentbuilder-compiler:0.14.0'

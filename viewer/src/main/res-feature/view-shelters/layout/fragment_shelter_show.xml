@@ -1,0 +1,230 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recipesItemViewModel"
+            type="me.darrillaga.prototype.viewer.shelters.viewmodel.SheltersItemViewModel"/>
+
+        <variable
+            name="eventsHandler"
+            type="me.darrillaga.prototype.viewer.shelters.view.SheltersItemEventsHandler"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    android:background="@color/primary"
+                    app:titleTextColor="@color/white"
+                    app:title="@{recipesItemViewModel.name}">
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+
+            <ScrollView
+                android:id="@+id/children_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/app_bar"
+                android:clipToPadding="false"
+                android:layout_alignParentEnd="true"
+                android:background="@color/soft_transparent_grey">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/medium_spacing"
+                        android:layout_marginBottom="@dimen/medium_spacing"
+                        android:textSize="@dimen/xxxxlarge_text"
+                        android:text="@{recipesItemViewModel.day}"
+                        tools:text="Día 5"/>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="@dimen/small_spacing"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/chart_height"
+                            android:layout_margin="@dimen/medium_spacing"
+                            android:padding="@dimen/small_spacing"
+                            app:dataSet="@{recipesItemViewModel}"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="@dimen/small_spacing"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:background="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:padding="@dimen/medium_spacing">
+
+                            <LinearLayout
+                                android:layout_width="@dimen/zero"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="0.95">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_below="@+id/sell_price"
+                                    android:layout_marginTop="@dimen/small_spacing"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/large_text"
+                                    android:text="@string/thin_thick_index"/>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/small_spacing"
+                                    android:layout_gravity="center_horizontal"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/sell_price"
+                                        android:layout_gravity="center_vertical"
+                                        android:gravity="center_vertical"
+                                        android:textSize="@dimen/xxlarge_text"
+                                        android:text="@{recipesItemViewModel.thinThickIndex}"
+                                        tools:text="1.3108"/>
+
+                                    <ImageView
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_up_arrow_green_24dp"/>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="@dimen/zero"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"/>
+
+                            <LinearLayout
+                                android:layout_width="@dimen/zero"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="0.95">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_below="@+id/sell_price"
+                                    android:layout_marginTop="@dimen/small_spacing"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/large_text"
+                                    android:text="@string/cost_per_meat_kg"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@+id/sell_price"
+                                    android:layout_marginTop="@dimen/small_spacing"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center_vertical"
+                                    android:textSize="@dimen/xxlarge_text"
+                                    android:text="@{recipesItemViewModel.meatPerKiloCost}"
+                                    tools:text="1,8 USD/Kg"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_margin="@dimen/small_spacing"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:background="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/medium_spacing">
+
+                            <TextView
+                                android:id="@+id/sell_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:gravity="center_vertical"
+                                android:textSize="@dimen/xlarge_text"
+                                android:text="@{@string/sell_price(recipesItemViewModel.sellPrice)}"
+                                tools:text="Precio venta: 2.10 USD/Kg"/>
+
+                            <TextView
+                                android:id="@+id/recipe_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_below="@+id/sell_price"
+                                android:layout_marginTop="@dimen/small_spacing"
+                                android:gravity="center_vertical"
+                                android:textSize="@dimen/xlarge_text"
+                                android:text="@{@string/recipe_price(recipesItemViewModel.recipePrice)}"
+                                tools:text="Precio compra de ración: 2.00 USD/Kg"/>
+
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:id="@+id/profitability_chart"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/chart_height"
+                                android:layout_below="@+id/recipe_price"
+                                android:layout_marginTop="@dimen/medium_spacing"
+                                app:dataSet="@{recipesItemViewModel}"/>
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/profitability_chart"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/medium_spacing"
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:text="@string/change_recipe"/>
+
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

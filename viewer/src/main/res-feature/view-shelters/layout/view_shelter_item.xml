@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recipesItemViewModel"
+            type="me.darrillaga.prototype.viewer.shelters.viewmodel.SheltersItemViewModel"/>
+
+        <variable
+            name="eventsHandler"
+            type="me.darrillaga.prototype.viewer.shelters.view.ShelterEventsHandler"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_margin="@dimen/small_spacing"
+        app:cardBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/medium_spacing"
+            android:onClick="@{(view) -> eventsHandler.onItemSelected(recipesItemViewModel)}">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/day"
+                android:layout_alignTop="@+id/day"
+                android:layout_alignBottom="@+id/day"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/xlarge_text"
+                android:text="@{recipesItemViewModel.name}"
+                tools:text="Corral 320kg"/>
+
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/xxxxlarge_text"
+                android:text="@{recipesItemViewModel.day}"
+                tools:text="Día 5"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/chart_height"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="@dimen/medium_spacing"
+                app:dataSet="@{recipesItemViewModel}"
+                app:eventsHandler="@{eventsHandler}"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>
