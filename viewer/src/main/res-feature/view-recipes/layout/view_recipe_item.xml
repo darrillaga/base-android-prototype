@@ -27,22 +27,21 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/small_spacing"
             android:layout_alignParentLeft="true"
             android:layout_toStartOf="@+id/price"
             android:textStyle="bold"
             android:text="@{recipesItemViewModel.name}"
-            tools:text="Pokebola"/>
+            tools:text="Dieta 1"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_spacing"
-            android:layout_marginLeft="@dimen/small_spacing"
             android:layout_toStartOf="@+id/price"
+            android:layout_alignParentLeft="true"
             android:layout_below="@+id/name"
-            android:text="@{recipesItemViewModel.name}"
+            android:text="@{recipesItemViewModel.description}"
             tools:text="Esta es una pokebola especial que los atrapa más fácil"/>
 
         <android.support.v7.widget.AppCompatTextView
@@ -53,20 +52,30 @@
             android:layout_marginLeft="@dimen/small_spacing"
             android:minWidth="@dimen/large_size"
             android:gravity="center"
-            android:text="@{recipesItemViewModel.name}"
+            android:text="@{recipesItemViewModel.pricePerKg}"
             android:textSize="@dimen/xlarge_text"
-            tools:text="$20"/>
+            tools:text="2.00 USD/kg"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/quantity"
+            android:id="@+id/energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/price"
             android:layout_marginLeft="@dimen/small_spacing"
             android:layout_marginTop="@dimen/small_spacing"
-            android:text="@{recipesItemViewModel.name}"
-            tools:text="4"/>
+            android:text="@{recipesItemViewModel.energy}"
+            tools:text="1200 kcal/kg"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/energy"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:text="@{recipesItemViewModel.kgIncreaseIntoAnimal}"
+            tools:text="1.200 Kg/día"/>
 
     </RelativeLayout>
 </layout>

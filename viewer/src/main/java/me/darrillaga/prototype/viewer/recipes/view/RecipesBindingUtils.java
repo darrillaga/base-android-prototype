@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import me.darrillaga.databinding.utils.ObservableListAdapterObservers;
 import me.darrillaga.prototype.commons.ui.BaseAdapter;
 import me.darrillaga.prototype.commons.ui.DataBindingAdapterUtils;
+import me.darrillaga.prototype.commons.ui.DividerItemDecoration;
 import me.darrillaga.prototype.viewer.BR;
 import me.darrillaga.prototype.viewer.R;
 import me.darrillaga.prototype.viewer.recipes.viewmodel.RecipesItemViewModel;
@@ -32,6 +33,12 @@ public class RecipesBindingUtils {
         layoutManager.setAutoMeasureEnabled(true);
 
         recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(
+                recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL_LIST,
+                ContextCompat.getDrawable(recyclerView.getContext(), R.drawable.dw_transparent_divider)
+        ));
 
         recyclerView.setAdapter(
                 new BaseAdapter<>(

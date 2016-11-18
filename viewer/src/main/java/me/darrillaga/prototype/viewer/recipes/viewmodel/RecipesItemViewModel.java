@@ -16,6 +16,11 @@ public class RecipesItemViewModel extends BaseObservable {
     private long mId;
 
     private String mName;
+    private String mDescription;
+    private String mEnergy;
+    private String mKgIncreaseIntoAnimal;
+    private String mPricePerKg;
+    private String mTotalKg;
 
     public RecipesItemViewModel(long id) {
         mId = id;
@@ -40,12 +45,37 @@ public class RecipesItemViewModel extends BaseObservable {
                 .doOnNext(o -> generateData());
     }
 
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public String getEnergy() {
+        return mEnergy;
+    }
+
+    public String getKgIncreaseIntoAnimal() {
+        return mKgIncreaseIntoAnimal;
+    }
+
+    public String getPricePerKg() {
+        return mPricePerKg;
+    }
+
+    public String getTotalKg() {
+        return mTotalKg;
+    }
+
     private void init() {
 
     }
 
     private void generateData() {
-
+        mName = "Dieta de engorde inicial";
+        mDescription = "Dieta compuesta de lupo, girasol y proteína";
+        mEnergy = "1500 kcal/kg";
+        mKgIncreaseIntoAnimal = "1.200 Kg/día";
+        mPricePerKg = "2.00 USD";
+        mTotalKg = "15000 Kg";
     }
 
 }

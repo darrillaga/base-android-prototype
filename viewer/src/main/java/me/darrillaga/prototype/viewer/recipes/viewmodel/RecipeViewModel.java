@@ -27,7 +27,7 @@ public class RecipeViewModel extends BaseObservable {
     }
 
     public Observable<RecipesItemViewModel> fetchItems() {
-        return Observable.range(0, 20, Schedulers.computation())
+        return Observable.range(0, 6, Schedulers.computation())
                 .flatMap(
                         integer -> Observable.just(integer).delay(1000, TimeUnit.MILLISECONDS)
                 )

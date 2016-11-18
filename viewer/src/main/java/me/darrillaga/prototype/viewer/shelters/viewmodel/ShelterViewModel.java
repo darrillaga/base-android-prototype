@@ -27,7 +27,7 @@ public class ShelterViewModel extends BaseObservable {
     }
 
     public Observable<SheltersItemViewModel> fetchItems() {
-        return Observable.range(0, 20, Schedulers.computation())
+        return Observable.range(0, 3, Schedulers.computation())
                 .flatMap(
                         integer -> Observable.just(integer).delay(1000, TimeUnit.MILLISECONDS)
                 )
@@ -38,13 +38,7 @@ public class ShelterViewModel extends BaseObservable {
     }
 
     private SheltersItemViewModel buildMarketplaceItemViewModel(int index) {
-        SheltersItemViewModel sheltersItemViewModel = new SheltersItemViewModel();
-
-//        sheltersItemViewModel.setCategory("Elementos");
-//        sheltersItemViewModel.setDescription("Esta es una pokebola especial que los atrapa más fácil");
-//        sheltersItemViewModel.setName("Pokebola " + index);
-//        sheltersItemViewModel.setPrice(index * 2);
-//        sheltersItemViewModel.setQuantity(index);
+        SheltersItemViewModel sheltersItemViewModel = new SheltersItemViewModel(index);
 
         return sheltersItemViewModel;
     }

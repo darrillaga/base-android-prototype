@@ -17,4 +17,6 @@
     <string name="cost_per_meat_kg">Costo por Kg de carne</string>
 
     <string name="shelters_limit_reached">Límite de corrales gratis alcanzado, por favor contáctenos por más corrales</string>
+
+    <string name="current_diet">Dieta actual</string>
 </resources>

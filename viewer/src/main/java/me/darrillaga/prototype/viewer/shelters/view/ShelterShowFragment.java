@@ -41,6 +41,8 @@ public class ShelterShowFragment extends Fragment implements SheltersItemEventsH
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ShelterShowFragmentBuilder.injectArguments(this);
+
         mInteractions = ActivityFragmentsInteractionsHelper
                 .ensureFragmentHasAttachedRequiredClassObject(this, Interactions.class);
     }
